@@ -1,0 +1,55 @@
+---
+title: "Practice_2"
+author: "Meng-Hsin, Wu"
+date: "2021/10/19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+library(dplyr)
+library(tidyr)
+element1<-data.frame(
+  before_diet= c(104.0, 95.0,87.0, 77.0,112.0),
+  after_diet= c(96.0, 91.0, 81.0, 75.0, 118.0),
+  row.names = c('subject_1', 'subject_2', 'subject_3', 
+                'subject_4', 'subject_5')
+)
+as.numeric(element1$before_diet)
+as.numeric(element1$after_diet)
+element1_2<- element1%>%pivot_longer(
+  everything(),
+  names_to= 'time',
+  values_to= 'weight',
+)
+element2_1<- c('subject_1', 'subject_2', 'subject_3', 
+               'subject_4', 'subject_5')
+element2_2<- c(c(element1$before_diet)-c(element1$after_diet) )
+element2_3<-data.frame(
+  subject= element2_1,
+  weight_loss= element2_2
+)
+list2<-list(A= element2_1, B= element2_2, 
+      C= element2_3 )
+BUBBLE_DIET<- list(A= element1_2, B= list2)
+BUBBLE_DIET
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
